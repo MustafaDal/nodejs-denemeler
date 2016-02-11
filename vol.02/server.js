@@ -1,12 +1,16 @@
 var express = require("express"),
-    app = express();
+    nunjucks = require("nunjucks"),
+    path = require( "path" ),
+    app = express(),
+    nunjucksEnv = new nunjucks.Environment( new nunjucks.FileSystemLoader( path.join( __dirname, '/public' )));
     
-    
-//require("./router/main");
+nunjucksEnv.express( app );
 
-app.use(express.static('views'))
-
-
-var server = app.listen("3000", function(){
-    console.log("start on port " + server.address().port + " - " + Date.now());
+app.get("/", function(req, res){
+    res.render('index.html', { username: "test" })    
 });
+
+
+app.listen(3000);
+
+console.log('Server runing at 3000');
