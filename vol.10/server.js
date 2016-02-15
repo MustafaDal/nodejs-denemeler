@@ -12,7 +12,7 @@ function send404Response (response) {
 function onRequest (req, res) {
     if(req.method == 'GET' && req.url == '/'){
         res.writeHead(200, {"Content-type":"text/html"});
-        fs.createReadStream("./index.html").pipe(res); // pipe netti
+        fs.createReadStream("./index.html").pipe(res);
     }
     else
         send404Response(res);
